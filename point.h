@@ -24,7 +24,7 @@ typedef struct _Point Point;
 /* END [_Point] */
 
 
-/**
+/** YA ESTA
  * @brief Constructor. Initialize a point.
  * 
  * This function allocates memory for a point and sets its fields acoording 
@@ -45,7 +45,7 @@ typedef struct _Point Point;
 */
 Point * point_new (int x, int y, char symbol);
 
-/**
+/** YA ESTA
  * @brief Destructor. Free the dynamic memory reserved for a point .
  *
  * @param p Point to free
@@ -54,7 +54,7 @@ Point * point_new (int x, int y, char symbol);
 void point_free (Point *p);
 
 
-/**
+/** YA ESTA
  * @brief Gets the x coordinate of a given point.
  *
  * @param Point pointer
@@ -65,7 +65,7 @@ void point_free (Point *p);
 int point_getCoordinateX (const Point *p) ;
 
 
-/**
+/** YA ESTA
  * @brief Gets the y coordinate of a given point.
  *
  * @param Point pointer
@@ -76,18 +76,18 @@ int point_getCoordinateX (const Point *p) ;
 int point_getCoordinateY (const Point *p) ;
 
 
-/**
+/** YA ESTA
  * @brief Gets the symbol of a given point.
  *
  * @param Point pointer
  *
- * @return Returns the x coordinate of a given point, or INT_MAX in 
+ * @return Returns the symbol coordinate of a given point, or ERRORCHAR in 
  * case of error.
  */
 char point_getSymbol (const Point *p) ;
 
 
-/**
+/** YA ESTA
  * @brief Modifies the x coordinate  of a given point.
  *
  * @param p Point pointer
@@ -98,7 +98,7 @@ char point_getSymbol (const Point *p) ;
 Status point_setCoordinateX (Point *p, int x) ;
 
 
-/**
+/** YA ESTA
  * @brief Modifies the y coordinate  of a given point.
  *
  * @param p Point pointer
@@ -109,7 +109,7 @@ Status point_setCoordinateX (Point *p, int x) ;
 Status point_setCoordinateY (Point *p, int y) ;
 
 
-/**
+/** YA ESTA
  * @brief Modifies the symbol of a given point.
  *
  * @param p Point pointer
@@ -123,7 +123,7 @@ Bool point_getVisited (const Point *p); // DFS (P2)
 Status point_setVisited (Point *p, Bool bol);    // DFS (P2)
 
 
-/**
+/** YA ESTA
  * @brief Reserves memory for a point where it copies the data from
  * the point src.
  * 
@@ -146,7 +146,7 @@ Status point_setVisited (Point *p, Bool bol);    // DFS (P2)
 Point *point_hardcpy (const Point *src);
 
 
-/**
+/** YA ESTA
  * @brief Compares two points.
  * 
  * @param p1,p2 Points to compare.

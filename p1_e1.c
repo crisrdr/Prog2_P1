@@ -1,5 +1,6 @@
 #include "point.h"
 
 int main(){
-    Point *p;  //Array de punteros
+    Point **p[4];  //Array de punteros
+
 }
