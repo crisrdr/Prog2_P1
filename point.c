@@ -70,10 +70,8 @@ Point *point_hardcpy (const Point *src){
 }
 
 Bool point_equal (const void *p1, const void *p2){
-    Point *_p1= (Point *) p1;
-    Point *_p2= (Point *) p2;
-    if (p1==NULL || p2==NULL)
-        return FALSE;
+    Point *_p1 = (Point *) p1;
+    Point *_p2 = (Point *) p2;
     if ((_p1->x ==_p2->x) && (_p1->y ==_p2->y) && (_p1->symbol ==_p2->symbol) )
         return TRUE;    
     else 
@@ -88,7 +86,7 @@ int point_print (FILE *pf, const void *p){
         return -1;
     }    
 
-    nChar = fprintf (pf, "[(%d,%d): %c]", point_getCoordinateX(pAux), point_getCoordinateY(pAux), point_getSymbol(pAux));
+    nChar = fprintf (pf, "[(%d, %d): %c]", point_getCoordinateX(pAux), point_getCoordinateY(pAux), point_getSymbol(pAux));
 
     return nChar;
 } // Print Stack
