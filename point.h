@@ -158,7 +158,7 @@ Bool point_equal (const void *p1, const void *p2);
 
 
 
-/** 
+/** YA ESTA
  * @brief Prints in pf the data of a point.
  * 
  * The format will be: [(x, y): symbol], without line break at the 

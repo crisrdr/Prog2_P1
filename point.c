@@ -79,7 +79,16 @@ Bool point_equal (const void *p1, const void *p2){
 }
 
 int point_print (FILE *pf, const void *p){
-    fkff
+    int nChar;
+    Point *pAux = (Point*)p;
+
+    if (pf == NULL || p == NULL){
+        return -1;
+    }    
+
+    nChar = fprintf (pf, "(%d,%d): %c", point_getCoordinateX(pAux), point_getCoordinateY(pAux), point_getSymbol(pAux));
+
+    return nChar;
 } // Print Stack
 
 /* 
