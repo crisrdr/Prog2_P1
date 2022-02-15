@@ -11,3 +11,6 @@ p1_e1.o: p1_e1.c
 
 clean:
 	rm *.o p1_e1
+
+run:
+	./p1_e1
