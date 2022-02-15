@@ -90,8 +90,3 @@ int point_print (FILE *pf, const void *p){
 
     return nChar;
 } // Print Stack
-
-/* 
-    • Implementar funciones de la interfaz pública declaradas en el fichero point.h.
-    • Las funciones privadas que consideres oportunas.sdfhg
-*/
