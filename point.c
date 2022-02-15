@@ -15,6 +15,7 @@ Point * point_new (int x, int y, char symbol){
     puntero->x = x;
     puntero->y = y;
     puntero->symbol = symbol;
+    puntero->visited = FALSE;
 
     return puntero;
 }
@@ -63,13 +64,8 @@ Status  point_setSymbol (Point *p, char c){
 }
 
 Point *point_hardcpy (const Point *src){
-    Point *p;
-    if ((p = (Point *) malloc (sizeof(Point))) == NULL)
-        return NULL;
-    p->x=src->x;
-    p->y=src->y;
-    p->symbol=src->symbol;
-
+    Point *p = point_new(src->x, src->y, src->symbol);
+    
     return p;
 }
 
@@ -81,6 +77,10 @@ Bool point_equal (const void *p1, const void *p2){
     if ((_p1->x==_p2->x) || (_p1->y==_p2->y) || (_p1->symbol==_p2->symbol) )
         return TRUE;    
 }
+
+int point_print (FILE *pf, const void *p){
+    
+} // Print Stack
 
 /* 
     • Implementar funciones de la interfaz pública declaradas en el fichero point.h.
