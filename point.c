@@ -79,10 +79,10 @@ Bool point_equal (const void *p1, const void *p2){
 }
 
 int point_print (FILE *pf, const void *p){
-    
+    fkff
 } // Print Stack
 
 /* 
     • Implementar funciones de la interfaz pública declaradas en el fichero point.h.
-    • Las funciones privadas que consideres oportunas.
+    • Las funciones privadas que consideres oportunas.sdfhg
 */
