@@ -100,15 +100,7 @@ int main(){
 
     // Punto 10: Asignación al cuarto elemento del primero
     printf("Assign p[3] = p[0]\n");
-    // Primero se obtiene cada elemento del primer punto
-    // Se ha hecho en el punto 5 y almacenado en las variables i, j, c
-
-    // Después se crea un punto en la cuarta posición con estos elementos
-    if ((p[3] = point_new (i, j, c)) == NULL){
-        fail_function (p[0],p[1]);
-        point_free (p[2]);
-        return 1;
-    }
+    p[3]=p[0];
 
     // Punto 11: Modificación del símbolo de p[3]
     printf("Modifying p[3]: ");
@@ -138,7 +130,7 @@ int main(){
     printf("\n"); 
 
     // Liberación final de memoria
-    for (i=0; i<4; i++){
+    for (i=0; i<3; i++){
         point_free (p[i]);
     }   
 
