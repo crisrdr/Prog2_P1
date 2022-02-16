@@ -14,3 +14,6 @@ clean:
 
 run:
 	./p1_e1
+
+val:
+	valgrind --leak-check=full ./p1_e1
