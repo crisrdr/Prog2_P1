@@ -1,19 +1,21 @@
-all: p1_e1
+EXE = p1_e1
 
-p1_e1: point.o p1_e1.o
-	gcc -o p1_e1 point.o p1_e1.o
+all: $(EXE)
+
+$(EXE): point.o $(EXE).o
+	gcc -o $(EXE) point.o $(EXE).o
 
 point.o: point.h point.c
 	gcc -c point.c
 
-p1_e1.o: p1_e1.c
-	gcc -c p1_e1.c
+$(EXE).o: $(EXE).c
+	gcc -c $(EXE).c
 
 clean:
-	rm *.o p1_e1
+	rm *.o $(EXE)
 
 run:
-	./p1_e1
+	./$(EXE)
 
 val:
-	valgrind --leak-check=full ./p1_e1
+	valgrind --leak-check=full ./$(EXE)
