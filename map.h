@@ -21,7 +21,7 @@ typedef enum {
 typedef struct _Map Map;
 
 
-/**
+/** YA ESTÁ (not sure de que esté bien)
  * @brief  Creates a new empty Map with nrows and ncols.
  *
  * Allocates memory for a new map and initializes it to be empty 
@@ -35,16 +35,16 @@ typedef struct _Map Map;
 Map * map_new (unsigned int nrows,  unsigned int ncols);
 
 
-/**
+/** SALTADO
  * @brief Frees a graph.
  *
  * Frees all the memory allocated for the graph, including its points
  *
  * @param g Pointer to graph to be freed.
  **/
-void map_free (Map *);
+void map_free (Map *); //////// PREGUNTAR SI FALTA LA g /////////////////////////////////////////////
 
-/**
+/** SALTADO
  * @brief Inserts a point in a map.
  *
  * Insert a point in the map at the coordinates indicated by the point. 
@@ -59,7 +59,7 @@ Point *map_insertPoint (Map *mp, Point *p);
 
 
 
-/**
+/** YA ESTÁ
  * @brief  Returns the total number of columns
  * in the map.
  *
@@ -70,7 +70,7 @@ Point *map_insertPoint (Map *mp, Point *p);
  **/
 int map_getNcols (const Map *mp);
 
-/**
+/** YA ESTÁ
  * @brief  Returns the total number of rows
  * in the map.
  *
@@ -81,8 +81,8 @@ int map_getNcols (const Map *mp);
  **/
 int map_getNrows (const Map *mp); 
 
-Point * map_getInput(const Map *mp);
-Point * map_getOutput (const Map *mp);
+Point * map_getInput(const Map *mp);        //Hay que hacerlo?//////////////////////////////////////////////////////////
+Point * map_getOutput (const Map *mp);      //Hay que hacerlo?//////////////////////////////////////////////////////////
 
 /**
  * @brief  Returns the map point with the same p coordinates.
