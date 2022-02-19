@@ -1,15 +1,20 @@
 EXE = p1_e1
+OBJ = point.o map.o
+GCC = gcc -c -Wall -pedantic
 
 all: $(EXE)
 
-$(EXE): point.o $(EXE).o
-	gcc -o $(EXE) point.o $(EXE).o
+$(EXE): $(OBJ) $(EXE).o
+	gcc -o $(EXE) $(OBJ) $(EXE).o
+
+map.o: map.h map.c
+	$(GCC) map.c
 
 point.o: point.h point.c
-	gcc -c point.c
+	$(GCC) point.c
 
 $(EXE).o: $(EXE).c
-	gcc -c $(EXE).c
+	$(GCC) $(EXE).c
 
 clean:
 	rm *.o $(EXE)
