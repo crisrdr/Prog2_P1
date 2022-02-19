@@ -1,6 +1,10 @@
+####################### VARIABLES #######################
+
 EXE = p1_e1
 OBJ = point.o map.o
 GCC = gcc -c -Wall -pedantic
+
+##################### COMANDOS MAKE #####################
 
 all: $(EXE)
 
