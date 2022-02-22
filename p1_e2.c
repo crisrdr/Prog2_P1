@@ -30,8 +30,8 @@ int main (){
             }
         }
     }
-    // Inserción de input y output
 
+    // Inserción de input y output
     if ((map_insertPoint(maps, point_new(Y_INPUT, X_INPUT, INPUT)) == NULL) || (map_insertPoint(maps, point_new(Y_OUTPUT, X_OUTPUT, OUTPUT)) == NULL)){
         printf("Run failed\n");     
         map_free(maps);                 // Prueba de errores y liberación de memoria
@@ -54,10 +54,10 @@ int main (){
     }
 
     if (                                                                    // Prueba de errores
-        (point_print(stdout, map_getNeighboor(maps,x, RIGHT)) == -1) ||
-        (point_print(stdout, map_getNeighboor(maps,x, UP)) == -1) ||
-        (point_print(stdout, map_getNeighboor(maps,x, LEFT)) == -1) ||
-        (point_print(stdout, map_getNeighboor(maps,x, DOWN)) == -1))
+        (point_print(stdout, map_getNeighboor(maps, x, RIGHT)) == -1) ||
+        (point_print(stdout, map_getNeighboor(maps, x, UP)) == -1) ||
+        (point_print(stdout, map_getNeighboor(maps, x, LEFT)) == -1) ||
+        (point_print(stdout, map_getNeighboor(maps, x, DOWN)) == -1))
     {
         printf("Run failed\n");
         point_free(x);
