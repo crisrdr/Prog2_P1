@@ -170,7 +170,7 @@ Bool map_equal (const void *_mp1, const void *_mp2);
  *
  * @code
  * Map * mp;
- *..... /*  additional code */
+ *..... /*  additional code 
  * map_print (stdout, mp);
  * @endcode
  *
