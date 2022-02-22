@@ -119,8 +119,8 @@ Status point_setCoordinateY (Point *p, int y) ;
  */
 Status  point_setSymbol (Point *p, char c) ;
 
-Bool point_getVisited (const Point *p); // DFS (P2)
-Status point_setVisited (Point *p, Bool bol);    // DFS (P2)
+Bool point_getVisited (const Point *p);             /* DFS (P2) */
+Status point_setVisited (Point *p, Bool bol);       /* DFS (P2) */
 
 
 /** YA ESTA
@@ -176,7 +176,7 @@ Bool point_equal (const void *p1, const void *p2);
  * @return Returns the number of characters that have been written 
  * successfully. If there have been errors returns -1.
  */
-int point_print (FILE *pf, const void *p); // Print Stack
+int point_print (FILE *pf, const void *p);  /* Print Stack */
 
 #endif /* POINT_H */
 

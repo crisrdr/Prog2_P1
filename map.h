@@ -115,7 +115,7 @@ Point *map_getPoint (const Map *mp, const Point *p);
  **/
 Point *map_getNeighboor(const Map *mp, const Point *p, Position pos);
 
-// setters
+/* setters */
 /*Ya está*/
 Status map_setInput(Map *mp, Point *p);
 /*Ya está*/
@@ -170,7 +170,7 @@ Bool map_equal (const void *_mp1, const void *_mp2);
  *
  * @code
  * Map * mp;
- *..... //  additional code
+ *..... /*  additional code */
  * map_print (stdout, mp);
  * @endcode
  *

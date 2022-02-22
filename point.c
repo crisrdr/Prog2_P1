@@ -4,7 +4,7 @@ struct _Point {
     int x, y;
     char symbol;
 
-    Bool visited; // for DFS
+    Bool visited;  /* for DFS */
 };
 
 Point * point_new (int x, int y, char symbol){
@@ -89,4 +89,4 @@ int point_print (FILE *pf, const void *p){
     nChar = fprintf (pf, "[(%d, %d): %c]", point_getCoordinateX(pAux), point_getCoordinateY(pAux), point_getSymbol(pAux));
 
     return nChar;
-} // Print Stack
+}  /* Print Stack */

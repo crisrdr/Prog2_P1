@@ -9,7 +9,7 @@ void fail_function (Point *x, Point *y){
 int main(){
     int i, j;
     char c;
-    // Punto 1: Array de 4 punteros
+    /* Punto 1: Array de 4 punteros */
     Point *p[4];
 
     // Punto 2: Inicialización de los dos primeros puntos

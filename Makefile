@@ -6,7 +6,7 @@ OBJ_1 = point.o $(EXE_1).o
 EXE_2 = p1_e2
 OBJ_2 = point.o map.o $(EXE_1).o $(EXE_2).o
 
-GCC = gcc -c -Wall -pedantic
+GCC = gcc -Wall -ansi -pedantic -c -g
 
 ##################### COMANDOS MAKE #####################
 
