@@ -57,14 +57,17 @@ void map_free (Map *g){
 
 /*inserta un punto en el mapa en las coodenadas indicadas en point*/
 Point *map_insertPoint (Map *mp, Point *p){
-    int i, j;
-    Point *insertedPoint;
+    Point *insertedPoint=NULL;
 
     if (p == NULL){
         return NULL;
     }
 
-    insertedPoint = (mp->array[point_getCoordinateX(p)][point_getCoordinateY(p)] = point_getSymbol(p));
+    point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p));
+
+    point_setCoordinateX(insertedPoint, point_getCoordinateX(p));
+    point_setCoordinateY(insertedPoint ,point_getCoordinateY(p));
+    point_setSymbol(insertedPoint ,point_getSymbol(p));
     
     return insertedPoint;
 }
@@ -88,7 +91,7 @@ int map_getNrows (const Map *mp){
 /*devuelve el input  */
 Point * map_getInput(const Map *mp){
     if (mp == NULL){
-        return -1;
+        return NULL;
     }
     return mp->input;
     
@@ -97,7 +100,7 @@ Point * map_getInput(const Map *mp){
 /*devuelve el output  */
 Point * map_getOutput (const Map *mp){
     if (mp == NULL){
-        return -1;
+        return NULL;
     }
     return mp->output;
 }      
@@ -128,6 +131,7 @@ Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
     case DOWN:
         return mp-> array[point_getCoordinateY(p)+1][point_getCoordinateX(p)];
         break;
+
     default:
         return NULL;
         break;}
@@ -191,7 +195,7 @@ int map_print (FILE *pf, Map *mp){
     fprintf(pf, "%d %d\n", mp->nrows, mp->ncols);
     for(i=0; i<mp->nrows; i++){
         for(j=0; j<mp->ncols; j++){
-            fprintf(pf,"%c",mp->array[i][j]);
+            fprintf(pf,"%c", point_getSymbol(mp->array[i][j]));
             numChar++;
         }
     }
