@@ -44,6 +44,11 @@ Map * map_new (unsigned int nrows,  unsigned int ncols){
 
 /*libera la memoria guardada para el graph y sus puntos */
 void map_free (Map *g){
+    int i, j;
+
+    for(i=0;i<g->nrows;i++)
+        for(j=0;j<g->ncols;j++)
+            g->array[j][i]='\0';
 
     g->ncols = '\0';
     g->nrows = '\0';
@@ -152,7 +157,7 @@ Status map_setInput(Map *mp, Point *p){
     return OK;
 }
 
-Status map_setOutput (Map *mp,Point *p){
+Status map_setOutput (Map *mp, Point *p){
     if (mp==NULL || p==NULL){
         return ERROR;
     }

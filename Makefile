@@ -4,7 +4,7 @@ EXE_1 = p1_e1
 OBJ_1 = point.o $(EXE_1).o
 
 EXE_2 = p1_e2
-OBJ_2 = point.o map.o $(EXE_1).o $(EXE_2).o
+OBJ_2 = point.o map.o $(EXE_2).o
 
 GCC = gcc -Wall -ansi -pedantic -c -g
 
@@ -12,7 +12,9 @@ GCC = gcc -Wall -ansi -pedantic -c -g
 
 ## GENERAL ##
 
-all: $(EXE_1) $(EXE_2)
+all_2: $(EXE_2)
+
+all_1: $(EXE_1)
 
 clean:
 	rm *.o $(EXE_1) $(EXE_2)
@@ -32,7 +34,7 @@ run1:
 	./$(EXE_1)
 
 val1:
-	valgrind --leak-check=full ./$(EXE_1)
+	valgrind --leak-check=full -s ./$(EXE_1)
 
 ## APARTADO 2 ##
 
@@ -49,4 +51,4 @@ run2:
 	./$(EXE_2)
 
 val2:
-	valgrind --leak-check=full ./$(EXE_2)
+	valgrind --leak-check=full -s ./$(EXE_2)

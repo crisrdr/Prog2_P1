@@ -31,7 +31,7 @@ typedef struct _Point Point;
  * its input parameter values.
  *
  * @code
- * // Example of use
+ ************* Example of use
  * Point * v;
  * v = point_new (0, 0, BARRIER);
  * @endcode
@@ -128,12 +128,12 @@ Status point_setVisited (Point *p, Bool bol);       /* DFS (P2) */
  * the point src.
  * 
  * @code
- * // Example of use
+ * ***** Example of use
  * Point *trg, *src;
  * src = point_new();
  * trg = point_hardcpy(src);
- * // .... aditional code ...
- * // free points
+ * **** .... aditional code ...
+ * **** free points
  * point_free(src);
  * point_free(trg);
  * @endcode

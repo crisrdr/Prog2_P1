@@ -15,7 +15,7 @@ typedef enum {
     UP = 1,
     LEFT = 2,
     DOWN = 3,       
-    STAY = 4,
+    STAY = 4
 } Position;
 
 typedef struct _Map Map;
@@ -170,7 +170,7 @@ Bool map_equal (const void *_mp1, const void *_mp2);
  *
  * @code
  * Map * mp;
- *..... /*  additional code 
+ *..... ********  additional code 
  * map_print (stdout, mp);
  * @endcode
  *
@@ -182,7 +182,7 @@ Bool map_equal (const void *_mp1, const void *_mp2);
  */
 int map_print (FILE*pf, Map *mp);   
 
-// DFS (P2)
+/* DFS (P2) */
 Point * map_dfs (Map *mp);  
 
 #endif /* MAP_H */

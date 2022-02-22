@@ -12,8 +12,8 @@ int main(){
     /* Punto 1: Array de 4 punteros */
     Point *p[4];
 
-    // Punto 2: Inicialización de los dos primeros puntos
-    if ((p[0] = point_new (0, 0, BARRIER)) == NULL){          // Comprobación de la salida de la función
+    /* Punto 2: Inicialización de los dos primeros puntos */
+    if ((p[0] = point_new (0, 0, BARRIER)) == NULL){          /* Comprobación de la salida de la función */
         printf("Run failed\n");
         return 1;
     }
@@ -23,7 +23,7 @@ int main(){
         return 1;
     }
 
-    // Punto 3: Impresión de puntos
+    /* Punto 3: Impresión de puntos */
     if (point_print (stdout, p[0]) == -1){
         fail_function (p[0],p[1]);
         return 1;
@@ -34,16 +34,16 @@ int main(){
     }
     printf("\n");
 
-    // Punto 4: Comparación de puntos
+    /* Punto 4: Comparación de puntos */
     printf("Equal points p[0] and p[1]? ");
     if (point_equal(p[0],p[1]) == TRUE)
         printf("Yes\n");
     else printf("No\n");
     
 
-    // Punto 5: Asignación al tercer elemento del primero
+    /* Punto 5: Asignación al tercer elemento del primero */
     printf("Creating p[2]: ");
-    // Primero se obtiene cada elemento del primer punto
+    /* Primero se obtiene cada elemento del primer punto */
     if ((i = point_getCoordinateX(p[0])) == __INT_MAX__){
         fail_function (p[0],p[1]);
         return 1;
@@ -56,13 +56,13 @@ int main(){
         fail_function (p[0],p[1]);
         return 1;
     }
-    // Después se crea un punto en la tercera posición con estos elementos
+    /* Después se crea un punto en la tercera posición con estos elementos */
     if ((p[2] = point_new (i, j, c)) == NULL){
         fail_function (p[0],p[1]);
         return 1;
     }
 
-    // Punto 6: Impresión del tercer punto
+    /* Punto 6: Impresión del tercer punto */
     if (point_print (stdout, p[2]) == -1){
         fail_function (p[0],p[1]);
         point_free(p[2]);
@@ -70,14 +70,14 @@ int main(){
     }
     printf("\n");
 
-    // Punto 7: Comparación del primer y el tercer punto
+    /* Punto 7: Comparación del primer y el tercer punto */
     printf("Equal points p[0] and p[2]? ");
     if (point_equal(p[0],p[2]) == TRUE)
         printf("Yes\n");
     else 
         printf("No\n");
 
-    // Punto 8: Modificación del símbolo de p[2]
+    /* Punto 8: Modificación del símbolo de p[2] */
     printf("Modifying p[2]: ");
     if ((point_setSymbol(p[2], SPACE)) == ERROR){
         fail_function (p[0],p[1]);
@@ -91,18 +91,18 @@ int main(){
     }
     printf("\n");
 
-    // Punto 9: Comparación del primer y el tercer punto (de nuevo, con el símbolo del tercero cambiado)
+    /* Punto 9: Comparación del primer y el tercer punto (de nuevo, con el símbolo del tercero cambiado) */
     printf("Equal points p[0] and p[2]? ");
     if (point_equal(p[0],p[2]) == TRUE)
         printf("Yes\n");
     else
         printf("No\n");
 
-    // Punto 10: Asignación al cuarto elemento del primero
+    /* Punto 10: Asignación al cuarto elemento del primero */
     printf("Assign p[3] = p[0]\n");
     p[3]=p[0];
 
-    // Punto 11: Modificación del símbolo de p[3]
+    /* Punto 11: Modificación del símbolo de p[3] */
     printf("Modifying p[3]: ");
     if ((point_setSymbol(p[3], OUTPUT)) == ERROR){
         fail_function (p[0],p[1]);
@@ -118,7 +118,7 @@ int main(){
     }
     printf("\n");
 
-    // Punto 12: Impresión de los 4 puntos
+    /* Punto 12: Impresión de los 4 puntos */
     for (i=0; i<4; i++){
         if ((point_print (stdout, p[i])) == -1){
             fail_function (p[0], p[1]);
@@ -129,7 +129,7 @@ int main(){
     } 
     printf("\n"); 
 
-    // Liberación final de memoria
+    /* Liberación final de memoria */
     for (i=0; i<3; i++){
         point_free (p[i]);
     }   
