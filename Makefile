@@ -1,10 +1,10 @@
 ####################### VARIABLES #######################
 
 EXE_1 = p1_e1
-OBJ_1 = point.o p1_e1.o
+OBJ_1 = point.o $(EXE_1).o
 
 EXE_2 = p1_e2
-OBJ_2 = point.o map.o p1_e1.o p1_e2.o
+OBJ_2 = point.o map.o $(EXE_1).o $(EXE_2).o
 
 GCC = gcc -c -Wall -pedantic
 

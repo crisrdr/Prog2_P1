@@ -1,5 +1,4 @@
 #include "map.h"
-#include "point.h"
 
 #define N_ROWS 3
 #define N_COLS 4
@@ -54,7 +53,7 @@ int main (){
         return 1;
     }
 
-    if ( 
+    if (                                                                    // Prueba de errores
         (point_print(stdout, map_getNeighboor(maps,x, RIGHT)) == -1) ||
         (point_print(stdout, map_getNeighboor(maps,x, UP)) == -1) ||
         (point_print(stdout, map_getNeighboor(maps,x, LEFT)) == -1) ||
@@ -66,7 +65,7 @@ int main (){
         return 1;
     }
 
-    point_free(x);
+    point_free(x);                  // Liberación final de memoria
     map_free(maps);
     
     return 0;
