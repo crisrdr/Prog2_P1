@@ -103,7 +103,8 @@ Point * map_getOutput (const Map *mp){
         return NULL;
     }
     return mp->output;
-}      
+}   
+
 /* Devuelve el point con las coordenadas p y null si hay un error */
 Point *map_getPoint (const Map *mp, const Point *p){
     if (!mp || p == NULL){
@@ -117,24 +118,28 @@ Point *map_getPoint (const Map *mp, const Point *p){
 
 /*devuelve el punto que esta al lado del punto en la direccion idicada POR p*/
 Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
-    switch (pos)
-    {
-    case RIGHT:
-        return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)+1];
-        break;
-    case UP:
-        return mp-> array[point_getCoordinateY(p)-1][point_getCoordinateX(p)];
-        break;
-    case LEFT:
-        return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)-1];
-        break;
-    case DOWN:
-        return mp-> array[point_getCoordinateY(p)+1][point_getCoordinateX(p)];
-        break;
-
-    default:
+    if (!mp || p==NULL){
         return NULL;
-        break;}
+    }
+
+    switch (pos) {
+        case RIGHT:
+            return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)+1];
+            break;
+        case UP:
+            return mp-> array[point_getCoordinateY(p)-1][point_getCoordinateX(p)];
+            break;
+        case LEFT:
+            return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)-1];
+            break;
+        case DOWN:
+            return mp-> array[point_getCoordinateY(p)+1][point_getCoordinateX(p)];
+            break;
+
+        default:
+            return NULL;
+            break;
+    }
         
 }
 
@@ -169,9 +174,10 @@ Map * map_readFromFile (FILE *pf){
 */
 /*compara dos mapas y devuelve true o false*/
 Bool map_equal (const void *_mp1, const void *_mp2){
+    int i, j, flag=0;
     Map *mp1 = (Map *) _mp1; 
     Map *mp2 = (Map *) _mp2;
-    int i, j, flag=0;
+    
     if ((mp1->ncols == mp2->ncols) && (mp1->nrows == mp2->nrows) && (mp1->input == mp2->input) && (mp1->output == mp2->output)){
         for (i=0; i<mp1->nrows; i++){
             for (j=0; j<mp1->ncols; j++){

@@ -1,20 +1,22 @@
 ####################### VARIABLES #######################
 
-EXE1 = p1_e1
-OBJ1 = point.o
-EXE2 = p1_e2
-OBJ2 = point.o map.o
+EXE_1 = p1_e1
+OBJ_1 = point.o
+
+EXE_2 = p1_e2
+OBJ_2 = $(OBJ_1) map.o
+
 GCC = gcc -c -Wall -pedantic
 
 ##################### COMANDOS MAKE #####################
 
-all: $(EXE1) $(EXE2)
+all: $(EXE_1) $(EXE_2)
 
-$(EXE1): $(OBJ1) $(EXE1).o
-	gcc -o $(EXE1) $(OBJ1) $(EXE1).o
+$(EXE_1): $(OBJ_1) $(EXE_1).o
+	gcc -o $(EXE_1) $(OBJ__1) $(EXE_1).o
 
-$(EXE2): $(OBJ2) $(EXE2).o
-	gcc -o $(EXE2) $(OBJ2) $(EXE2).o
+$(EXE_2): $(OBJ_2) $(EXE_2).o
+	gcc -o $(EXE_2) $(OBJ_2) $(EXE_2).o
 
 map.o: map.h map.c
 	$(GCC) map.c
@@ -22,20 +24,20 @@ map.o: map.h map.c
 point.o: point.h point.c
 	$(GCC) point.c
 
-$(EXE1).o: $(EXE1).c
-	$(GCC) $(EXE1).c
+$(EXE_1).o: $(EXE_1).c
+	$(GCC) $(EXE_1).c
 
 clean:
-	rm *.o $(EXE1) $(EXE2)
+	rm *.o $(EXE_1) $(EXE_2)
 
 run1:
-	./$(EXE1)
+	./$(EXE_1)
 
 run2:
-	./$(EXE2)
+	./$(EXE_2)
 
 val1:
-	valgrind --leak-check=full ./$(EXE1)
+	valgrind --leak-check=full ./$(EXE_1)
 
 val2:
-	valgrind --leak-check=full ./$(EXE2)
+	valgrind --leak-check=full ./$(EXE_2)

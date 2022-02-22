@@ -44,7 +44,7 @@ Map * map_new (unsigned int nrows,  unsigned int ncols);
  **/
 void map_free (Map *);
 
-/** REMAL
+/** YA ESTÁ
  * @brief Inserts a point in a map.
  *
  * Insert a point in the map at the coordinates indicated by the point. 
