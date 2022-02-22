@@ -21,7 +21,7 @@ typedef enum {
 typedef struct _Map Map;
 
 
-/** YA ESTÁ (not sure de que esté bien)
+/** YA ESTÁ
  * @brief  Creates a new empty Map with nrows and ncols.
  *
  * Allocates memory for a new map and initializes it to be empty 
@@ -35,16 +35,16 @@ typedef struct _Map Map;
 Map * map_new (unsigned int nrows,  unsigned int ncols);
 
 
-/** SALTADO
+/** YA ESTÁ
  * @brief Frees a graph.
  *
  * Frees all the memory allocated for the graph, including its points
  *
  * @param g Pointer to graph to be freed.
  **/
-void map_free (Map *); //////// PREGUNTAR SI FALTA LA g /////////////////////////////////////////////
+void map_free (Map *);
 
-/** SALTADO
+/** REMAL
  * @brief Inserts a point in a map.
  *
  * Insert a point in the map at the coordinates indicated by the point. 
@@ -81,10 +81,14 @@ int map_getNcols (const Map *mp);
  **/
 int map_getNrows (const Map *mp); 
 
-Point * map_getInput(const Map *mp);        //Hay que hacerlo?//////////////////////////////////////////////////////////
-Point * map_getOutput (const Map *mp);      //Hay que hacerlo?//////////////////////////////////////////////////////////
+/*YA ESTA*/
+Point * map_getInput(const Map *mp);   
 
-/**
+/* YA ESTA*/     
+Point * map_getOutput (const Map *mp);      
+
+
+/** YA ESTA
  * @brief  Returns the map point with the same p coordinates.
  *
  * @param mp Pointer to the map.
@@ -97,7 +101,7 @@ Point * map_getOutput (const Map *mp);      //Hay que hacerlo?//////////////////
 Point *map_getPoint (const Map *mp, const Point *p);
 
 
-/**
+/**YA ESTA
  * @brief  Returns the neighboor of the point p at the position pos
  * in the map.
  *
@@ -112,7 +116,9 @@ Point *map_getPoint (const Map *mp, const Point *p);
 Point *map_getNeighboor(const Map *mp, const Point *p, Position pos);
 
 // setters
+/*Ya está*/
 Status map_setInput(Map *mp, Point *p);
+/*Ya está*/
 Status map_setOutput (Map *mp,Point *p);
 
 /* START [map_readFromFile] */
@@ -145,7 +151,7 @@ Map * map_readFromFile (FILE *pf);
 
 /* END [map_readFromFile] */
 
-/**
+/** YA ESTA
  * @brief Compares two maps.
  * 
  * @param p1,p2 Pointers to maps to compare.
@@ -156,7 +162,7 @@ Map * map_readFromFile (FILE *pf);
 Bool map_equal (const void *_mp1, const void *_mp2); 
 /* END [_map_readFromFile] */
 
-/** 
+/** YA ESTÁ
  * @brief Prints in pf a map
  * 
  * Prints the total number rows and columns and after a new line
@@ -176,8 +182,8 @@ Bool map_equal (const void *_mp1, const void *_mp2);
  */
 int map_print (FILE*pf, Map *mp);   
 
-
-Point * map_dfs (Map *mp);  // DFS (P2)
+// DFS (P2)
+Point * map_dfs (Map *mp);  
 
 #endif /* MAP_H */
 

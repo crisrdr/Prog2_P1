@@ -4,8 +4,7 @@
 #define MAX_NROWS 64            // Maximun map rows
 #define MAX_BUFFER 64           // Maximun file line size
 
-struct _Map
-{
+struct _Map {
     unsigned int nrows, ncols;
 
     Point *array[MAX_NROWS][MAX_NCOLS];     // array with the Map points
@@ -18,14 +17,15 @@ struct _Map
 Map * map_new (unsigned int nrows,  unsigned int ncols){
     int i, j;
     Map *map = NULL;
-    if ((map = (Map*) malloc (sizeof(Map))) == NULL){
-        return NULL;
-    }
 
     if ((nrows < 0 || nrows >= MAX_NROWS)||(ncols < 0 || ncols >= MAX_NCOLS)){
         return NULL;
     }
 
+    if ((map = (Map*) malloc (sizeof(Map))) == NULL){
+        return NULL;
+    }
+    
     /* Asignación del numero de filas y columnas */
     map->nrows = nrows;
     map->ncols = ncols;
@@ -37,15 +37,39 @@ Map * map_new (unsigned int nrows,  unsigned int ncols){
         }
     }
     map->input = NULL;
-    map->output = NULL;
+    map->output = NULL;    
 
     return map;
 }
 
-void map_free (Map *);
+/*libera la memoria guardada para el graph y sus puntos */
+void map_free (Map *g){
 
-Point *map_insertPoint (Map *mp, Point *p);
+    g->ncols = '\0';
+    g->nrows = '\0';
 
+    g->input = NULL;
+    g->output = NULL;
+
+    free(g);      
+
+}
+
+/*inserta un punto en el mapa en las coodenadas indicadas en point*/
+Point *map_insertPoint (Map *mp, Point *p){
+    int i, j;
+    Point *insertedPoint;
+
+    if (p == NULL){
+        return NULL;
+    }
+
+    insertedPoint = (mp->array[point_getCoordinateX(p)][point_getCoordinateY(p)] = point_getSymbol(p));
+    
+    return insertedPoint;
+}
+
+/*devuelve el numero de columnas*/
 int map_getNcols (const Map *mp){
     if (mp == NULL){
         return -1;
@@ -53,6 +77,7 @@ int map_getNcols (const Map *mp){
     return mp->ncols;
 }
 
+/*devuelve el numero de filas*/
 int map_getNrows (const Map *mp){
     if (mp == NULL){
         return -1;
@@ -60,6 +85,115 @@ int map_getNrows (const Map *mp){
     return mp->nrows;
 }
 
-Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
+/*devuelve el input  */
+Point * map_getInput(const Map *mp){
+    if (mp == NULL){
+        return -1;
+    }
+    return mp->input;
     
+}     
+
+/*devuelve el output  */
+Point * map_getOutput (const Map *mp){
+    if (mp == NULL){
+        return -1;
+    }
+    return mp->output;
+}      
+/* Devuelve el point con las coordenadas p y null si hay un error */
+Point *map_getPoint (const Map *mp, const Point *p){
+    if (!mp || p == NULL){
+        return NULL;
+    }
+    else{
+        return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)];
+    }     
+}
+
+
+/*devuelve el punto que esta al lado del punto en la direccion idicada POR p*/
+Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
+    switch (pos)
+    {
+    case RIGHT:
+        return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)+1];
+        break;
+    case UP:
+        return mp-> array[point_getCoordinateY(p)-1][point_getCoordinateX(p)];
+        break;
+    case LEFT:
+        return mp-> array[point_getCoordinateY(p)][point_getCoordinateX(p)-1];
+        break;
+    case DOWN:
+        return mp-> array[point_getCoordinateY(p)+1][point_getCoordinateX(p)];
+        break;
+    default:
+        return NULL;
+        break;}
+        
+}
+
+Status map_setInput(Map *mp, Point *p){
+    if (mp==NULL || p==NULL){
+        return ERROR;
+    }
+    mp->input=p;
+
+    return OK;
+}
+
+Status map_setOutput (Map *mp,Point *p){
+    if (mp==NULL || p==NULL){
+        return ERROR;
+    }
+    mp->output=p;
+
+    return OK;
+}
+
+/* EJERCICIO 3
+Map * map_readFromFile (FILE *pf){
+    Map *map;
+    if (pf==NULL){
+        return NULL;
+    }
+    scanf(pf, "%d %d", map->rows, map->ncols);
+
+
+}
+*/
+/*compara dos mapas y devuelve true o false*/
+Bool map_equal (const void *_mp1, const void *_mp2){
+    Map *mp1 = (Map *) _mp1; 
+    Map *mp2 = (Map *) _mp2;
+    int i, j, flag=0;
+    if ((mp1->ncols == mp2->ncols) && (mp1->nrows == mp2->nrows) && (mp1->input == mp2->input) && (mp1->output == mp2->output)){
+        for (i=0; i<mp1->nrows; i++){
+            for (j=0; j<mp1->ncols; j++){
+                if (!(mp1->array[i][j] == mp2->array[i][j]))
+                    flag=1;
+            }
+        }
+    }
+    if (!flag)
+        return TRUE;
+    else 
+        return FALSE;
+}
+
+/*imprime en el archivo el numero de filas y columnas */
+int map_print (FILE *pf, Map *mp){
+    int i, j, numChar=0;
+    if (pf==NULL || mp==NULL){
+        return -1;
+    }
+    fprintf(pf, "%d %d\n", mp->nrows, mp->ncols);
+    for(i=0; i<mp->nrows; i++){
+        for(j=0; j<mp->ncols; j++){
+            fprintf(pf,"%c",mp->array[i][j]);
+            numChar++;
+        }
+    }
+    return numChar;
 }
