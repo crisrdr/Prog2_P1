@@ -48,13 +48,13 @@ void map_free (Map *g){
 
     for(i=0;i<g->nrows;i++)
         for(j=0;j<g->ncols;j++)
-            g->array[j][i]='\0';
-
+            point_free(g->array[j][i]);
+            
     g->ncols = '\0';
     g->nrows = '\0';
 
-    g->input = NULL;
-    g->output = NULL;
+    point_free(g->input);
+    point_free(g->output);
 
     free(g);      
 

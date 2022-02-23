@@ -51,4 +51,4 @@ run2:
 	./$(EXE_2)
 
 val2:
-	valgrind --leak-check=full -s ./$(EXE_2)
+	valgrind --leak-check=full --show-leak-kinds=all -s ./$(EXE_2)

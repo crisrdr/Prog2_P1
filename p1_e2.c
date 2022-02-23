@@ -30,16 +30,22 @@ int main (){
                 map_free(maps);
                 return 1;
             }
+            
         }
     }
     point_free(y);
     point_free(x);
+    point_free()
     /* Inserción de input y output */
-    if ((map_insertPoint(maps, point_new(Y_INPUT, X_INPUT, INPUT)) == NULL) || (map_insertPoint(maps, point_new(Y_OUTPUT, X_OUTPUT, OUTPUT)) == NULL)){
-        printf("Run failed\n");    
+    if (((x = map_insertPoint(maps, point_new(Y_INPUT, X_INPUT, INPUT))) == NULL) || ((y = map_insertPoint(maps, point_new(Y_OUTPUT, X_OUTPUT, OUTPUT))) == NULL)){
+        printf("Run failed\n");   
+        point_free(y);
+        point_free(x); 
         map_free(maps);                 /* Prueba de errores y liberación de memoria */
         return 1;
     }
+    point_free(y);
+    point_free(x);
 
     /* Punto 3: Impresión del mapa */
     if (map_print(stdout,maps) == -1){
