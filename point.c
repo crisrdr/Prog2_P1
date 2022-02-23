@@ -59,7 +59,7 @@ Status point_setCoordinateY (Point *p, int y){
 Status  point_setSymbol (Point *p, char c){
     if (c!=INPUT && c!=OUTPUT && c!=BARRIER && c!=SPACE)
         return ERROR;
-    p->symbol=c;
+    p->symbol = c;
     return OK;
 }
 

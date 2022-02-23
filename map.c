@@ -68,11 +68,12 @@ Point *map_insertPoint (Map *mp, Point *p){
         return NULL;
     }
 
-    point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p));
-
-    point_setCoordinateX(insertedPoint, point_getCoordinateX(p));
-    point_setCoordinateY(insertedPoint ,point_getCoordinateY(p));
-    point_setSymbol(insertedPoint ,point_getSymbol(p));
+    if ((point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p)) == ERROR) ||
+        (point_setCoordinateX(insertedPoint, point_getCoordinateX(p)) == ERROR) ||
+        (point_setCoordinateY(insertedPoint ,point_getCoordinateY(p)) == ERROR) ||
+        (point_setSymbol(insertedPoint ,point_getSymbol(p)) == ERROR)){
+            return NULL;
+        }
     
     return insertedPoint;
 }
@@ -206,8 +207,9 @@ int map_print (FILE *pf, Map *mp){
     fprintf(pf, "%d %d\n", mp->nrows, mp->ncols);
     for(i=0; i<mp->nrows; i++){
         for(j=0; j<mp->ncols; j++){
-            fprintf(pf,"%c", point_getSymbol(mp->array[i][j]));
-            numChar++;
+            if (point_print(pf, mp->array[j][i]) == -1){
+                return -1;
+            }
         }
     }
     return numChar;
