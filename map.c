@@ -209,9 +209,9 @@ int map_print (FILE *pf, Map *mp){
         return -1;
     }
     fprintf(pf, "%d %d\n", mp->nrows, mp->ncols);
-    for(i=0; i<mp->nrows; i++){
-        for(j=0; j<mp->ncols; j++){
-            if (point_print(pf, mp->array[j][i]) == -1){
+    for(i=0; i<mp->ncols; i++){
+        for(j=0; j<mp->nrows; j++){
+            if ((numChar += point_print(pf, mp->array[i][j])) == -1){
                 return -1;
             }
         }
