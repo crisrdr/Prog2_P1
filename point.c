@@ -8,16 +8,16 @@ struct _Point {
 };
 
 Point * point_new (int x, int y, char symbol){
-    Point *puntero;
-    if ((puntero = (Point *) malloc (sizeof(Point))) == NULL)
+    Point *pointer;
+    if ((pointer = (Point *) malloc (sizeof(Point))) == NULL)
         return NULL;    
 
-    puntero->x = x;
-    puntero->y = y;
-    puntero->symbol = symbol;
-    puntero->visited = FALSE;
+    pointer->x = x;
+    pointer->y = y;
+    pointer->symbol = symbol;
+    pointer->visited = FALSE;
 
-    return puntero;
+    return pointer;
 }
 
 void point_free (Point *p){
@@ -57,7 +57,7 @@ Status point_setCoordinateY (Point *p, int y){
 }
 
 Status  point_setSymbol (Point *p, char c){
-    if (c!=INPUT && c!=OUTPUT && c!=BARRIER && c!=SPACE)
+    if ( !p || (c!=INPUT && c!=OUTPUT && c!=BARRIER && c!=SPACE))
         return ERROR;
     p->symbol = c;
     return OK;

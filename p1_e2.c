@@ -18,24 +18,23 @@ int main (){
         printf("Run failed\n");
         return 1;
     }
-    printf("Map:\n");
 
     /* Punto 2: Inserción del laberinto */
     for(i=0; i<N_ROWS; i++){
         for (j=0; j<N_COLS; j++){
-            y = point_new(i,j,BARRIER);
-            if ((x = map_insertPoint(maps, y)) == NULL){     /* Formación del mapa */
-                printf("Run failed\n");  
-                point_free(y);                                  /* Prueba de errores y liberación de memoria */
-                map_free(maps);
-                return 1;
-            }
-            
+            while (((i!=X_INPUT) && (j!=Y_INPUT)) || ((i!=X_OUTPUT) && (j!=Y_OUTPUT))){
+                y = point_new(i,j,BARRIER);
+                if ((x = map_insertPoint(maps, y)) == NULL){        /* Formación del mapa */
+                    printf("Run failed\n");
+                    point_free(y);                                            /* Prueba de errores y liberación de memoria */
+                    map_free(maps);
+                    return 1;
+                }
+            }            
         }
     }
-    point_free(y);
     point_free(x);
-    point_free()
+    point_free(y);
     /* Inserción de input y output */
     if (((x = map_insertPoint(maps, point_new(Y_INPUT, X_INPUT, INPUT))) == NULL) || ((y = map_insertPoint(maps, point_new(Y_OUTPUT, X_OUTPUT, OUTPUT))) == NULL)){
         printf("Run failed\n");   
@@ -48,6 +47,7 @@ int main (){
     point_free(x);
 
     /* Punto 3: Impresión del mapa */
+    printf("Map:\n");
     if (map_print(stdout,maps) == -1){
         printf("Run failed\n");
         map_free(maps);
