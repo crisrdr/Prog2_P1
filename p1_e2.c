@@ -22,7 +22,7 @@ int main (){
     /* Punto 2: Inserción del laberinto */
     for(i=0; i<N_ROWS; i++){
         for (j=0; j<N_COLS; j++){
-            while (((i!=X_INPUT) && (j!=Y_INPUT)) || ((i!=X_OUTPUT) && (j!=Y_OUTPUT))){
+            if (((i!=Y_INPUT) && (j!=X_INPUT)) || ((i!=Y_OUTPUT) && (j!=X_OUTPUT))){
                 y = point_new(i,j,BARRIER);
                 if ((x = map_insertPoint(maps, y)) == NULL){        /* Formación del mapa */
                     printf("Run failed\n");
@@ -48,6 +48,7 @@ int main (){
 
     /* Punto 3: Impresión del mapa */
     printf("Map:\n");
+/////////////////////////////////////////////////////////HASTA AQUI TODO BIEN/////////////////////////
     if (map_print(stdout,maps) == -1){
         printf("Run failed\n");
         map_free(maps);

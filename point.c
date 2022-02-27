@@ -64,7 +64,14 @@ Status  point_setSymbol (Point *p, char c){
 }
 
 Point *point_hardcpy (const Point *src){
-    Point *p = point_new(src->x, src->y, src->symbol);
+    Point *p;
+    
+    if (src == NULL){
+        return NULL;
+    } 
+    if ((p = point_new(src->x, src->y, src->symbol)) == NULL){
+        return NULL;
+    }   
     
     return p;
 }

@@ -62,20 +62,24 @@ void map_free (Map *g){
 
 /*inserta un punto en el mapa en las coodenadas indicadas en point*/
 Point *map_insertPoint (Map *mp, Point *p){
-    Point *insertedPoint=NULL;
-
-    if (p == NULL){
+    if (!p){
         return NULL;
     }
 
-    if ((point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p)) == ERROR) ||
-        (point_setCoordinateX(insertedPoint, point_getCoordinateX(p)) == ERROR) ||
-        (point_setCoordinateY(insertedPoint ,point_getCoordinateY(p)) == ERROR) ||
-        (point_setSymbol(insertedPoint ,point_getSymbol(p)) == ERROR)){
-            return NULL;
-        }
+    if ((mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] = point_hardcpy(p)) == NULL){
+        return NULL;
+    }
+        
+        /*
+        (point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p)) == ERROR) ||
+        (point_setCoordinateX(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getCoordinateX(p)) == ERROR) ||
+        (point_setCoordinateY(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] ,point_getCoordinateY(p)) == ERROR) ||
+        (point_setSymbol(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] ,point_getSymbol(p)) == ERROR))
+    {
+        return NULL;
+    } */
     
-    return insertedPoint;
+    return p;
 }
 
 /*devuelve el numero de columnas*/
