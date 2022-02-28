@@ -188,6 +188,20 @@ Map * map_readFromFile (FILE *pf){
                 map_free(map);
                 return NULL;
             }
+            if (symb==OUTPUT){
+                if ((map_setOutput(map,p))==ERROR){
+                    point_free(p);
+                    map_free(map);
+                    return NULL;
+                }
+            }
+            if(symb==INPUT){
+                if ((map_setInput(map,p))==ERROR){
+                    point_free(p);
+                    map_free(map);
+                    return NULL;
+                }
+            }
             point_free(p);
         }
         fscanf(pf,"\n");

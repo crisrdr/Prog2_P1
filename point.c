@@ -69,9 +69,16 @@ Point *point_hardcpy (const Point *src){
     if (src == NULL){
         return NULL;
     } 
+    if ((p = (Point*)malloc(sizeof(Point)))==NULL){
+        return NULL;
+    }
+    p->x = src->x;
+    p->y = src->y;
+    p->symbol = src->symbol;
+    /*
     if ((p = point_new(src->x, src->y, src->symbol)) == NULL){
         return NULL;
-    }   
+    } */  
     
     return p;
 }

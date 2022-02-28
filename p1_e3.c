@@ -15,6 +15,7 @@ comando:
 
 int main(int argc, char *argv[]){
     Map *map=NULL;
+    Point *x=NULL, *y=NULL;
     FILE *f;
 
     if (argc != 2){
@@ -31,18 +32,48 @@ int main(int argc, char *argv[]){
         fclose(f);
         return 1;
     }
+    fclose(f);
 
     if ((map_print(stdout,map))==-1){       /* Impresión del mapa por pantalla */
-        map_free(map);
         fprintf(stdout,"Run failed\n");
         return 1;
     }
 
-    
+    fprintf(stdout,"\nGet output neighboors:\n");
+    if ((y = map_getOutput(map))==NULL){
+        fprintf(stdout,"Run failed\n");
+        return 1;
+    }
+    if ((x = point_new (point_getCoordinateX(y), point_getCoordinateY(y), point_getSymbol(y)))==NULL){
+        fprintf(stdout,"Run failed\n");
+        point_free(y);
+        return 1;
+    }
+    if (                                                                    /* Prueba de errores */
+        (point_print(stdout, map_getNeighboor(map, x, RIGHT)) == -1) ||
+        (point_print(stdout, map_getNeighboor(map, x, UP)) == -1) ||
+        (point_print(stdout, map_getNeighboor(map, x, LEFT)) == -1) ||
+        (point_print(stdout, map_getNeighboor(map, x, DOWN)) == -1))
+    {
+        printf("Run failed\n");
+        point_free(x);
+        return 1;
+    }
 
+    fprintf(stdout,"\n");  
 
+    fprintf(stdout,"Get right inferior corner neighboors:\n");
+    if ((x = point_new (map_getNrows(map)-1,map_getNcols(map)-1, BARRIER)) == NULL){
+        map_free(map);
+        return 1;
+    }
+    if (
+        (point_print(stdout, map_getNeighboor(map, x, UP)) == -1) ||
+        (point_print(stdout, map_getNeighboor(map, x, LEFT)) == -1)
+    )
+
+    fprintf(stdout,"\n");
     map_free(map);
-    fclose(f);
 
     return 0;
 }

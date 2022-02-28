@@ -67,7 +67,7 @@ p1_e3.o: $(EXE_3).c
 	$(GCC) $(EXE_3).c
 
 run3:
-	./$(EXE_3)
+	./$(EXE_3) laberinto_1.txt
 
 val3:
 	valgrind --leak-check=full --show-leak-kinds=all -s ./$(EXE_3) laberinto_1.txt
