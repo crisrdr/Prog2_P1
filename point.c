@@ -88,7 +88,7 @@ Bool point_equal (const void *p1, const void *p2){
 int point_print (FILE *pf, const void *p){
     Point *pAux = (Point*)p;
 
-    if (pf == NULL || p == NULL){
+    if (!pf || !p){
         return -1;
     }    
 
