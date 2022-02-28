@@ -69,15 +69,6 @@ Point *map_insertPoint (Map *mp, Point *p){
     if ((mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] = point_hardcpy(p)) == NULL){
         return NULL;
     }
-        
-        /*
-        (point_setSymbol (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getSymbol(p)) == ERROR) ||
-        (point_setCoordinateX(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)], point_getCoordinateX(p)) == ERROR) ||
-        (point_setCoordinateY(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] ,point_getCoordinateY(p)) == ERROR) ||
-        (point_setSymbol(mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] ,point_getSymbol(p)) == ERROR))
-    {
-        return NULL;
-    } */
     
     return p;
 }
@@ -171,17 +162,39 @@ Status map_setOutput (Map *mp, Point *p){
     return OK;
 }
 
-/* EJERCICIO 3
+/*lee el mapa de un fichero y lo devuelve*/
 Map * map_readFromFile (FILE *pf){
-    Map *map;
+    int rows, cols, i, j;
+    char symb;
+    Map *map=NULL;
+    Point *p=NULL;    
+    
     if (pf==NULL){
         return NULL;
     }
-    scanf(pf, "%d %d", map->rows, map->ncols);
+    fscanf(pf, "%d %d\n", &cols, &rows);
 
-
+    if ((map = map_new(rows,cols))==NULL){
+        return NULL;
+    }
+    for (i=0;i<cols;i++){
+        for(j=0;j<rows && fscanf(pf,"%c", &symb);j++){
+            if ((p = point_new(j,i,symb))==NULL){
+                map_free(map);
+                return NULL;
+            }
+            if ((map_insertPoint(map,p))==NULL){
+                point_free(p);
+                map_free(map);
+                return NULL;
+            }
+            point_free(p);
+        }
+        fscanf(pf,"\n");
+    }
+    return map;
 }
-*/
+
 /*compara dos mapas y devuelve true o false*/
 Bool map_equal (const void *_mp1, const void *_mp2){
     int i, j, flag=0;
