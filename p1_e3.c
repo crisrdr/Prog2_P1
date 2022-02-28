@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
     }
 
     fprintf(stdout,"\nGet output neighboors:\n");
-    if ((y = map_getOutput(map))==NULL){
+    if ((y = point_new(point_getCoordinateX(map_getOutput(map)), point_getCoordinateY(map_getOutput(map)), point_getSymbol(map_getOutput(map))))==NULL){
         fprintf(stdout,"Run failed\n");
         return 1;
     }
