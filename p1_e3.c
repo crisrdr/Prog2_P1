@@ -18,8 +18,11 @@ int main(int argc, char *argv[]){
     Point *x=NULL, *y=NULL;
     FILE *f;
 
-    if (argc != 2){
+    if (argc < 2){
         fprintf(stdout,"Arguments missing\n");
+        return 1;
+    } else if (argc > 2){
+        fprintf(stdout,"Too many arguments\n");
         return 1;
     }
 
