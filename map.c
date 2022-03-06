@@ -18,7 +18,7 @@ Map * map_new (unsigned int nrows,  unsigned int ncols){
     int i, j;
     Map *map = NULL;
 
-    if ((nrows < 0 || nrows >= MAX_NROWS)||(ncols < 0 || ncols >= MAX_NCOLS)){
+    if ((nrows < 1 || nrows >= MAX_NROWS)||(ncols < 1 || ncols >= MAX_NCOLS)){
         return NULL;
     }
 
@@ -62,13 +62,15 @@ void map_free (Map *g){
 
 /*inserta un punto en el mapa en las coodenadas indicadas en point*/
 Point *map_insertPoint (Map *mp, Point *p){
-    if (!p){
+    if (!p || point_getCoordinateX(p) < 0 || point_getCoordinateX(p) > MAX_NCOLS || point_getCoordinateY(p) > MAX_NROWS|| point_getCoordinateY(p) < 0){
         return NULL;
     }
 
-    if ((mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] = point_hardcpy(p)) == NULL){
+    if (mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] != NULL){
         return NULL;
     }
+
+    mp->array[point_getCoordinateY(p)][point_getCoordinateX(p)] = p;
     
     return p;
 }
@@ -145,7 +147,7 @@ Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
 }
 
 Status map_setInput(Map *mp, Point *p){
-    if (mp==NULL || p==NULL){
+    if (mp==NULL || p==NULL || map_getInput(mp) != NULL){
         return ERROR;
     }
     mp->input=p;
@@ -154,7 +156,7 @@ Status map_setInput(Map *mp, Point *p){
 }
 
 Status map_setOutput (Map *mp, Point *p){
-    if (mp==NULL || p==NULL){
+    if (mp==NULL || p==NULL || map_getOutput(mp) != NULL){
         return ERROR;
     }
     mp->output=p;
@@ -172,14 +174,14 @@ Map * map_readFromFile (FILE *pf){
     if (pf==NULL){
         return NULL;
     }
-    fscanf(pf, "%d %d\n", &cols, &rows);
+    fscanf(pf, "%d %d\n", &rows, &cols);
 
     if ((map = map_new(rows,cols))==NULL){
         return NULL;
     }
-    for (i=0;i<cols;i++){
-        for(j=0;j<rows && fscanf(pf,"%c", &symb);j++){
-            if ((p = point_new(j,i,symb))==NULL){
+    for (i=0;i<rows;i++){
+        for(j=0;j<cols && fscanf(pf,"%c", &symb);j++){
+            if ((p = point_new(i,j,symb))==NULL){
                 map_free(map);
                 return NULL;
             }
@@ -214,11 +216,13 @@ Bool map_equal (const void *_mp1, const void *_mp2){
     int i, j, flag=0;
     Map *mp1 = (Map *) _mp1; 
     Map *mp2 = (Map *) _mp2;
+
+    if (!_mp1 || !_mp2) return FALSE;
     
-    if ((mp1->ncols == mp2->ncols) && (mp1->nrows == mp2->nrows) && (mp1->input == mp2->input) && (mp1->output == mp2->output)){
+    if ((mp1->ncols == mp2->ncols) && (mp1->nrows == mp2->nrows) && point_equal(mp1->input,mp2->input) && point_equal(mp1->output,mp2->output)){
         for (i=0; i<mp1->nrows; i++){
             for (j=0; j<mp1->ncols; j++){
-                if (!(mp1->array[i][j] == mp2->array[i][j]))
+                if (!(point_equal(mp1->array[i][j],mp2->array[i][j])))
                     flag=1;
             }
         }

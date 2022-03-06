@@ -39,19 +39,23 @@ int main(int argc, char *argv[]){
 
     if ((map_print(stdout,map))==-1){       /* Impresión del mapa por pantalla */
         fprintf(stdout,"Run failed\n");
+        map_free(map);
         return 1;
     }
 
     fprintf(stdout,"\nGet output neighboors:\n");
     if ((y = point_new(point_getCoordinateX(map_getOutput(map)), point_getCoordinateY(map_getOutput(map)), point_getSymbol(map_getOutput(map))))==NULL){
         fprintf(stdout,"Run failed\n");
+        map_free(map);
         return 1;
     }
     if ((x = point_new (point_getCoordinateX(y), point_getCoordinateY(y), point_getSymbol(y)))==NULL){
         fprintf(stdout,"Run failed\n");
+        map_free(map);
         point_free(y);
         return 1;
     }
+    point_free(y);
     if (                                                                    /* Prueba de errores */
         (point_print(stdout, map_getNeighboor(map, x, RIGHT)) == -1) ||
         (point_print(stdout, map_getNeighboor(map, x, UP)) == -1) ||
@@ -59,6 +63,7 @@ int main(int argc, char *argv[]){
         (point_print(stdout, map_getNeighboor(map, x, DOWN)) == -1))
     {
         printf("Run failed\n");
+        map_free(map);
         point_free(x);
         return 1;
     }
@@ -68,6 +73,7 @@ int main(int argc, char *argv[]){
     fprintf(stdout,"Get right inferior corner neighboors:\n");
     if ((x = point_new (map_getNrows(map)-1,map_getNcols(map)-1, BARRIER)) == NULL){
         map_free(map);
+        
         return 1;
     }
     if (

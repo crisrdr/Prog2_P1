@@ -9,6 +9,11 @@ struct _Point {
 
 Point * point_new (int x, int y, char symbol){
     Point *pointer;
+
+    if ((symbol!=INPUT && symbol!=OUTPUT && symbol!=BARRIER && symbol!=SPACE)){
+        return NULL;
+    }
+
     if ((pointer = (Point *) malloc (sizeof(Point))) == NULL)
         return NULL;    
 

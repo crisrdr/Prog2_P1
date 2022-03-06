@@ -62,6 +62,15 @@ int main(){
         return 1;
     }
 
+    /* TAMBIÉN SE PUEDE HACER:
+    
+    if ((p[0] = point_hardcpy(p[2]))==NULL){
+        fail_function(p[0],p[1]);
+        return 1;
+    }
+
+     */
+
     /* Punto 6: Impresión del tercer punto */
     if (point_print (stdout, p[2]) == -1){
         fail_function (p[0],p[1]);
