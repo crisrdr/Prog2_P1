@@ -77,7 +77,7 @@ Point *map_insertPoint (Map *mp, Point *p){
 
 /*devuelve el numero de columnas*/
 int map_getNcols (const Map *mp){
-    if (mp == NULL){
+    if (!mp){
         return -1;
     }
     return mp->ncols;
@@ -85,7 +85,7 @@ int map_getNcols (const Map *mp){
 
 /*devuelve el numero de filas*/
 int map_getNrows (const Map *mp){
-    if (mp == NULL){
+    if (!mp){
         return -1;
     }
     return mp->nrows;
@@ -93,7 +93,7 @@ int map_getNrows (const Map *mp){
 
 /*devuelve el input  */
 Point * map_getInput(const Map *mp){
-    if (mp == NULL){
+    if (!mp){
         return NULL;
     }
     return mp->input;
@@ -102,7 +102,7 @@ Point * map_getInput(const Map *mp){
 
 /*devuelve el output  */
 Point * map_getOutput (const Map *mp){
-    if (mp == NULL){
+    if (!mp){
         return NULL;
     }
     return mp->output;
@@ -110,7 +110,7 @@ Point * map_getOutput (const Map *mp){
 
 /* Devuelve el point con las coordenadas p y null si hay un error */
 Point *map_getPoint (const Map *mp, const Point *p){
-    if (!mp || p == NULL){
+    if (!mp || !p){
         return NULL;
     }
     else{
@@ -121,7 +121,7 @@ Point *map_getPoint (const Map *mp, const Point *p){
 
 /*devuelve el punto que esta al lado del punto en la direccion idicada POR p*/
 Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
-    if (!mp || p==NULL){
+    if (!mp || !p){
         return NULL;
     }
 
@@ -147,7 +147,7 @@ Point *map_getNeighboor(const Map *mp, const Point *p, Position pos){
 }
 
 Status map_setInput(Map *mp, Point *p){
-    if (mp==NULL || p==NULL || map_getInput(mp) != NULL){
+    if (!mp || !p || map_getInput(mp) != NULL){
         return ERROR;
     }
     mp->input=p;
@@ -156,7 +156,7 @@ Status map_setInput(Map *mp, Point *p){
 }
 
 Status map_setOutput (Map *mp, Point *p){
-    if (mp==NULL || p==NULL || map_getOutput(mp) != NULL){
+    if (!mp || !p || map_getOutput(mp) != NULL){
         return ERROR;
     }
     mp->output=p;
@@ -171,7 +171,7 @@ Map * map_readFromFile (FILE *pf){
     Map *map=NULL;
     Point *p=NULL;    
     
-    if (pf==NULL){
+    if (!pf){
         return NULL;
     }
     fscanf(pf, "%d %d\n", &rows, &cols);
@@ -181,6 +181,7 @@ Map * map_readFromFile (FILE *pf){
     }
     for (i=0;i<rows;i++){
         for(j=0;j<cols && fscanf(pf,"%c", &symb);j++){
+            fprintf(pf,"%c",symb);
             if ((p = point_new(i,j,symb))==NULL){
                 map_free(map);
                 return NULL;
@@ -213,7 +214,7 @@ Map * map_readFromFile (FILE *pf){
 
 /*compara dos mapas y devuelve true o false*/
 Bool map_equal (const void *_mp1, const void *_mp2){
-    int i, j, flag=0;
+    int i, j;
     Map *mp1 = (Map *) _mp1; 
     Map *mp2 = (Map *) _mp2;
 
@@ -223,20 +224,18 @@ Bool map_equal (const void *_mp1, const void *_mp2){
         for (i=0; i<mp1->nrows; i++){
             for (j=0; j<mp1->ncols; j++){
                 if (!(point_equal(mp1->array[i][j],mp2->array[i][j])))
-                    flag=1;
+                    return FALSE;
             }
         }
     }
-    if (!flag)
-        return TRUE;
-    else 
-        return FALSE;
+    
+    return TRUE;
 }
 
 /*imprime en el archivo el numero de filas y columnas */
 int map_print (FILE *pf, Map *mp){
     int i, j, numChar=0;
-    if (pf==NULL || mp==NULL){
+    if (!pf || !mp){
         return -1;
     }
     fprintf(pf, "%d %d\n", mp->ncols, mp->nrows);
