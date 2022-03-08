@@ -62,7 +62,7 @@ void map_free (Map *g){
 
 /*inserta un punto en el mapa en las coodenadas indicadas en point*/
 Point *map_insertPoint (Map *mp, Point *p){
-    if (!p || point_getCoordinateX(p) < 0 || point_getCoordinateX(p) > MAX_NCOLS || point_getCoordinateY(p) > MAX_NROWS|| point_getCoordinateY(p) < 0){
+    if (!mp || !p || point_getCoordinateX(p) < 0 || point_getCoordinateX(p) > MAX_NCOLS || point_getCoordinateY(p) > MAX_NROWS|| point_getCoordinateY(p) < 0){
         return NULL;
     }
 

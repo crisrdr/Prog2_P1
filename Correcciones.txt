@@ -5,18 +5,6 @@ al final de cada línea además del '\n' que os estaba rompiendo la lectura.
 Esto, combinado con insertPoint que está haciendo un hardcpy en vez de una 
 asignación normal, hace que os de core dumped.
 
-2.
-
-Da segmentation fault si llamo a setCoordinateX o setCoordinateY de un punto 
-p NULL.
-
-3.
-
-Da segmentation fault si llamo a equal con uno de los puntos a NULL.
-
-4.
-
-Da segmentation fault si llamo a insertPoint de un mapa NULL.
 
 5.
 

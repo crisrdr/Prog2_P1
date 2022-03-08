@@ -48,14 +48,14 @@ char point_getSymbol (const Point *p){
 }
 
 Status point_setCoordinateX (Point *p, int x){
-    if (x<0)
+    if (x<0 || p == NULL)
         return ERROR;
     p->x=x;
     return OK;
 }
 
 Status point_setCoordinateY (Point *p, int y){
-    if (y<0)
+    if (y<0 || p == NULL)
         return ERROR;
     p->y=y;
     return OK;
@@ -85,6 +85,8 @@ Point *point_hardcpy (const Point *src){
 Bool point_equal (const void *p1, const void *p2){
     Point *_p1 = (Point *) p1;
     Point *_p2 = (Point *) p2;
+    if (p1 == NULL || p2 == NULL) return FALSE;
+
     if ((_p1->x ==_p2->x) && (_p1->y ==_p2->y) && (_p1->symbol ==_p2->symbol) )
         return TRUE;    
     else 
